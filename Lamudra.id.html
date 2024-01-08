@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamudra.id</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ede9e7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('bg.png') center center/cover no-repeat fixed;
+            
+        }
+
+        header {
+            background-color: #edcfe3;
+            color: #1c1410;
+            text-align: center;
+            padding: 10px; /* Sesuaikan dengan nilai yang diinginkan */
+            margin-bottom: 10px; /* Sesuaikan dengan nilai yang diinginkan */
+            display: flex;
+            justify-content: space-between; /* Menempatkan informasi media sosial di sebelah kiri dan menu di sebelah kanan */
+            align-items: center; /* Memusatkan vertikal */
+            transition: all 0.3s ease-in-out; /* Efek transisi semua properti */
+            background: url('bg.png') center center/cover no-repeat fixed;
+            
+        }
+
+        header a {
+            color: #0d0b0a;
+            text-decoration: none;
+            margin: 0 15px; /* Menambahkan spasi antar menu */
+            font-size: 1.2em;
+            border: 2px solid transparent; /* Menambahkan border pada menu */
+            padding: 5px 10px; /* Menambahkan padding pada menu */
+            border-radius: 8px; /* Sudut bulat pada border */
+            transition: all 0.3s ease-in-out; /* Efek transisi semua properti */
+            transform-origin: center; /* Pusat rotasi */
+        }
+
+        header a:hover {
+            border-color: #1c1410; /* Warna border saat dihover */
+            color: #1c1410; /* Warna teks saat dihover */
+            transform: scale(1.1); /* Memperbesar elemen saat dihover */
+            box-shadow: 0 0 10px #4d493c; /* Efek bayangan (shadow) kuning saat dihover */
+            text-shadow: 0 0 5px #4d493c; /* Efek bayangan (shadow) teks kuning saat dihover */
+        }
+
+        header img {
+            width: 150px; /* Sesuaikan ukuran logo */
+            height: auto;
+            margin-right: auto; /* Menggeser logo ke kiri */
+            margin-top: 0px;
+            margin-left: 50px;
+            transition: all 0.3s ease-in-out; /* Efek transisi semua properti */
+        }
+
+        header .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        section {
+            flex: 1;
+            padding: 20px;
+            background-color: #ede9e7;
+            margin: -50px 500px -1px 500px; /* Menambahkan margin-bottom -1px */
+            border: 2px solid #1c1410; /* Border luar */
+            border-radius: 8px; /* Sudut bulat pada border luar */
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box; /* Menambahkan box-sizing */
+            background: url('bg.png') center center/cover no-repeat fixed;
+            
+        }
+
+        section:before,
+        section:after {
+            content: '';
+            position: absolute;
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+            border: 2px solid #1c1410; /* Border dalam */
+            top: 2px;
+            left: 2px;
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-sizing: border-box; /* Menambahkan box-sizing */
+        }
+
+        .content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover; /* Menyesuaikan gambar ke dalam elemen */
+            border: 2px solid #1c1410; /* Border untuk foto */
+            border-radius: 8px; /* Sudut bulat pada border */
+            margin-right: auto; /* Menggeser foto ke tengah */
+            margin-left: auto;
+            display: block;
+            transition: transform 0.6s ease; /* Animasi transisi */
+        }
+        .shop-now-link {
+            color: #1c1410;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: color 0.3s ease-in-out;
+            display: block;
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .shop-now-link:hover {
+            color: #fff;
+            background-color: #1c1410;
+        }
+        
+        .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-spinner div {
+    width: 20px;
+    height: 20px;
+    background-color: #3498db;
+    border-radius: 50%;
+    margin: 0 5px; /* Menambahkan jarak antara bola */
+    animation: spin 2s linear infinite;
+}
+
+.loading-spinner div:nth-child(2) {
+    background-color: #e74c3c; /* Ganti dengan warna yang diinginkan */
+    animation: spin 2s linear infinite 1s; /* Menambahkan delay untuk bola kedua */
+}
+
+.loading-spinner div:nth-child(3) {
+    background-color: #2ecc71; /* Ganti dengan warna yang diinginkan */
+    animation: spin 2s linear infinite 2s; /* Menambahkan delay untuk bola ketiga */
+}
+
+@keyframes spin {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-15px) rotate(120deg); }
+    50% { transform: translateY(0) rotate(240deg); }
+    75% { transform: translateY(-15px) rotate(360deg); }
+}
+
+
+
+
+        footer {
+            background-color: #1a100c;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('bg.png') center center/cover no-repeat fixed;
+            
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: color 0.3s ease-in-out;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="LOGO LAMUDRA PNG.PNG" alt="Logo Toko" />
+        <div class="menu">
+            <a href="Lamudra.id.html">Home</a>
+            <a href="product.html">Product</a>
+            <a href="tentang kami.html">Hubungi Kami</a>
+            <a href="cod.html">COD</a>
+        </div>
+    </header>
+
+    <section>
+        <div class="content">
+            <img src="gambar 10.png" alt="Foto Produk">
+        </div>
+    </section>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    
+
+    <footer>
+        <a href="#" class="shop-now-link">SHOP NOW</a>
+        
+    </footer>
+
+
+    <script>
+        const images = ["gambar 10.png", "kk.jpg", "yy.jpg", "gambar 3.jpg", "gambar 4.jpg", "gambar 5.png", "gambar 6.png", "gambar 7.png", "gambar 8.png" , "gambar 9.png"]; // Ganti dengan daftar nama gambar Anda
+        let currentImageIndex = 0;
+        const imgElement = document.querySelector('.content img');
+
+        function changeImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            const newImage = images[currentImageIndex];
+            imgElement.src = newImage;
+        }
+
+        setInterval(changeImage, 3000); // Ganti gambar setiap 3 detik (3000 milidetik)
+    </script>
+
+    <script>
+         // Hapus overlay loading setelah halaman sepenuhnya dimuat
+         window.addEventListener('load', function () {
+        var loadingOverlay = document.getElementById('loadingOverlay');
+        loadingOverlay.style.display = 'none';
+    });
+    </script>
+
+</body>
+</html>

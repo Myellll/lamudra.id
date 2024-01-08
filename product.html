@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamudra.id</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+      background-color: #2c3e50;
+      color: #000000;
+      background: url('bg.png') center center/cover no-repeat fixed;
+    }
+
+    header {
+      background-color: #edcfe3;
+      color: #1c1410;
+      text-align: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease-in-out;
+      background: url('bg.png') center center/cover no-repeat fixed;
+    }
+
+    header a {
+      color: #0d0b0a;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1.2em;
+      border: 2px solid transparent;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease-in-out;
+      transform-origin: center;
+    }
+
+    header a:hover {
+      border-color: #1c1410;
+      color: #1c1410;
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #4d493c;
+      text-shadow: 0 0 5px #4d493c;
+    }
+
+    .product-menu {
+      list-style: none;
+      padding: 0;
+      display: inline-block;
+      position: relative;
+    }
+
+    .product-menu a {
+      color: #0d0b0a;
+      text-decoration: none;
+      font-size: 1.2em;
+      border: 2px solid transparent;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      position: relative;
+      z-index: 1; /* Memprioritaskan menu utama */
+    }
+
+    .product-menu a:hover {
+      border-color: #1c1410;
+      color: #1c1410;
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #4d493c;
+      text-shadow: 0 0 5px #4d493c;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0px); /* Menempatkan submenu tepat di bawah menu utama */
+      left: 0;
+      background-color: #fff;
+      padding: 5px;
+      border: 2px solid #1c1410;
+      border-radius: 8px;
+      width: 160px;
+      z-index: 0; /* Memprioritaskan submenu di bawah menu utama */
+      background: url('bg.png') center center/cover no-repeat fixed;
+    }
+
+    .product-menu:hover .submenu {
+      display: block;
+    }
+
+    .submenu a {
+      display: block;
+      text-decoration: none;
+      color: #000;
+      padding: 5px 0;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .popup-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .popup-content img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .product-item img {
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product-item img:hover {
+      transform: scale(1.1);
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <div class="loader-container">
+    <div class="loader"></div>
+    <div class="loader"></div>
+    <div class="loader"></div>
+  </div>
+
+  <header>
+    <h1>Product Kami</h1>
+    <div class="menu">
+      <a href="Lamudra.id.html">Home</a>
+      <a href="product.html">Product</a>
+      <a href="tentang kami.html">Hubungi Kami</a>
+      <a href="cod.html">COD</a>
+    </div>
+  </header>
+
+  <section>
+    <div class="product-menu">
+      <a href="data-produk.php">Pilih Jenis Produk</a>
+      <div class="submenu">
+        <a href="#" onclick="showProductDetails('gelang')">Gelang</a>
+        <a href="#" onclick="showProductDetails('cincin')">Cincin</a>
+        <a href="#" onclick="showProductDetails('kalung')">Kalung</a>
+      </div>
+    </div>
+
+    <div id="gelang" class="product-details" style="display: none;">
+      <h2>Gelang</h2>
+      <div class="product-item">
+        <img src="gelang.jpg" alt="Gelang" onclick="showPopup('gelang', 'Gelang', 'Harga: Rp XXXX', 'Deskripsi: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...')">
+      </div>
+    </div>
+
+    <div id="cincin" class="product-details" style="display: none;">
+      <h2>Cincin</h2>
+      <div class="product-item">
+        <img src="cincin.jpg" alt="Cincin" onclick="showPopup('cincin', 'Cincin', 'Harga: Rp XXXX', 'Deskripsi: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...')">
+      </div>
+    </div>
+
+    <div id="kalung" class="product-details" style="display: none;">
+      <h2>Kalung</h2>
+      <div class="product-item">
+        <img src="kalung.jpg" alt="Kalung" onclick="showPopup('kalung', 'Kalung', 'Harga: Rp XXXX', 'Deskripsi: Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...')">
+      </div>
+    </div>
+  </section>
+
+  <div class="popup-container" onclick="hidePopup()">
+    <div class="popup-content" id="popup-content">
+    </div>
+  </div>
+
+
+  <script>
+    setTimeout(function() {
+      document.querySelector('body').classList.add('loaded');
+    }, 300);
+  </script>
+   <script>
+    function showProductDetails(productId) {
+      // Menyembunyikan semua detail produk
+      var productDetails = document.getElementsByClassName('product-details');
+      for (var i = 0; i < productDetails.length; i++) {
+        productDetails[i].style.display = 'none';
+      }
+
+      // Menampilkan detail produk yang dipilih
+      var selectedProduct = document.getElementById(productId);
+      selectedProduct.style.display = 'block';
+    }
+
+    </script>
+
+    <script>
+    setTimeout(function() {
+      document.querySelector('body').classList.add('loaded');
+    }, 300);
+
+    function showPopup(id, title, price, description) {
+      var popupContent = document.getElementById('popup-content');
+      popupContent.innerHTML = `
+        <h2>${title}</h2>
+        <img src="${id}.jpg" alt="${title}">
+        <p>${price}</p>
+        <p>${description}</p>
+      `;
+
+      var popupContainer = document.querySelector('.popup-container');
+      popupContainer.style.display = 'flex';
+    }
+
+    function hidePopup() {
+      var popupContainer = document.querySelector('.popup-container');
+      popupContainer.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

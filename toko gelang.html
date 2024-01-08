@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Online</title>
+    <style>
+         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #f0f0f0; /* Warna abu-abu terang */
+            color: #333;
+            text-align: center;
+            padding: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header img {
+            width: 350px; /* Sesuaikan dengan ukuran yang diinginkan */
+            max-height: 100%; /* Tambahkan ini agar logo tetap proporsional dan tidak terdistorsi */
+            display: block;
+            position: absolute;
+            
+    		margin-left: 750px; /* Sesuaikan nilai margin sesuai keinginan */
+        }
+
+        .carousel {
+            position: relative;
+            width: 100vw;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 300%; /* Setiap slide membutuhkan 100% lebar, sehingga total lebar adalah 300% */
+        }
+
+        .slide {
+            flex: 1;
+            min-width: 100vw;
+        }
+
+        .product-info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+        }
+
+
+
+        nav {
+            background-color: #f0f0f0; /* Warna abu-abu terang */
+            padding: 10px;
+            text-align: center;
+			 margin-right: 850px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            position: relative;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #ffcc00;
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        nav a:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+
+    .submenu {
+    display: none;
+    position: absolute;
+    background-color: #000; /* Warna background submenu hitam */
+    color: #fff; /* Warna teks putih */
+    z-index: 1;
+    text-align: left;
+    width: 150px;
+    padding: 10px 0;
+    border-radius: 0 0 8px 8px;
+    margin-top: 10px; /* Geser submenu ke bawah */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efek cahaya putih */
+    transition: margin-top 0.3s ease-in-out; /* Animasi perubahan margin-top */
+}
+		
+        nav li {
+            position: relative;
+            display: inline-block;
+        }
+
+        nav li:hover .submenu {
+            display: block;
+            position: absolute;
+            top: 100%; /* Menempatkan submenu tepat di bawah menu utama */
+            left: 0;
+            margin-top: 1px; /* Mengatur margin negatif untuk mendekatkan submenu ke menu utama */
+        }
+
+        .submenu a {
+    display: block;
+    padding: 8px 16px;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.submenu a:hover {
+    background-color: #333; /* Warna background saat dihover */
+    color: #ffcc00; /* Warna teks saat dihover */
+}
+
+
+.submenu a:hover::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffcc00; /* Warna efek cahaya saat dihover */
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+
+.submenu a:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .product {
+    width: 50%; /* Lebar form produk */
+    max-width: 120px; /* Lebar maksimum form produk */
+    max-height: 150px; /* Tinggi maksimum form produk */
+    margin: 10px auto; /* Pusatkan secara horizontal */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%; /* Menggunakan lebar 100% */
+    height: auto;
+    border-radius: 4px;
+}
+
+.image-frame {
+    width: 60px; /* Lebar frame */
+    height: 80px; /* Tinggi frame */
+    border: 1px solid #ccc; /* Garis bingkai */
+    overflow: hidden; /* Untuk memotong bagian gambar yang melebihi frame */
+}
+
+.image-frame img {
+    width: 100%; /* Agar gambar sesuai dengan lebar frame */
+    height: auto; /* Sesuaikan tinggi sesuai proporsi */
+    display: block; /* Hilangkan spasi ekstra */
+}
+
+        .product p {
+            color: #777;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .logo {
+            width: 30px; /* Sesuaikan ukuran logo */
+            height: auto;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <header>
+        <h1></h1>
+        <img src="logoo.png" alt="Logo Toko">
+    </header>
+        
+        <nav>
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Product</a>
+                <ul class="submenu">
+                    <li><a href="#">Gelang</a></li>
+                    <li><a href="#">Cincin</a></li>
+                    <li><a href="#">Kalung</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Hubungi Kami</a></li>
+        </nav>
+    </header>
+
+    <div class="carousel">
+        <div class="slides">
+            <div class="slide">
+                <div class="product-info">
+                </div>
+                <img src="gambar 1.jpg" alt="Gelang 1">
+            </div>
+            <!-- Tambahkan slide lain sesuai kebutuhan -->
+            <div class="slide">
+                <div class="product-info">
+                  
+                </div>
+                <img src="gambar 2s.jpg" alt="Gelang 2">
+            </div>
+            <div class="slide">
+                <div class="product-info">
+                   
+                </div>
+                <img src="gambar a3.jpg" alt="Gelang 3">
+            </div>
+        </div>
+    </div>
+            
+            <!-- Tambahkan lebih banyak produk sesuai kebutuhan -->
+
+        </section>
+    </div>
+
+   
+	
+	 <script>
+        // JavaScript untuk membuat efek slider
+        const slides = document.querySelector('.slides');
+        const slideWidth = document.querySelector('.slide').clientWidth;
+        let counter = 0;
+
+        function nextSlide() {
+            counter++;
+            if (counter >= slides.children.length) {
+                counter = 0;
+            }
+            updateSlide();
+        }
+
+        function updateSlide() {
+            slides.style.transform = `translateX(${-counter * slideWidth}px)`;
+        }
+
+        setInterval(nextSlide, 3500); // Ganti gambar setiap 3 detik (3000 milidetik)
+    </script>
+
+
+</body>
+</html>
